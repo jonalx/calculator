@@ -5,9 +5,13 @@ plugins {
     id("org.jetbrains.kotlin.jvm").version("1.3.41")
 }
 
+repositories {
+    jcenter()
+}
+
 val ASSERTK_VERSION = "0.18"
 
-allprojects {
+subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     repositories {
