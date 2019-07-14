@@ -1,4 +1,4 @@
-# Calculator
+# Calculator [![Build Status](https://travis-ci.org/jonalx/calculator.svg?branch=master)](https://travis-ci.org/jonalx/calculator)
 Test Project with a simple calculator and an HTTP API
 
 ## Modules
