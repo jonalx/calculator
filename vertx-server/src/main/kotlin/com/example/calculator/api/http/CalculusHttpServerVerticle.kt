@@ -1,12 +1,12 @@
 package com.example.calculator.api.http
 
 import com.example.calculator.model.Calculator
+import com.example.calculator.model.CalculatorImpl
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.json.Json
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
-import java.nio.charset.Charset
 import java.util.*
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,7 +14,7 @@ data class CalculusResponse(val error: Boolean, val result: Double? = null, val 
 
 class CalculusHttpServerVerticle : AbstractVerticle() {
 
-    val calculator = Calculator()
+    val calculator: Calculator = CalculatorImpl()
 
     override fun start() {
         val router = Router.router(vertx)
@@ -37,8 +37,7 @@ class CalculusHttpServerVerticle : AbstractVerticle() {
         }
     }
 
-    private fun decodeQueryParam(query: String) =
-            Base64.getDecoder().decode(query).toString(Charset.forName("UTF-8"))
+    private fun decodeQueryParam(query: String) = Base64.getDecoder().decode(query).toString(Charsets.UTF_8)
 
     private fun getQueryParam(routingContext: RoutingContext): String {
         require(routingContext.queryParam("query").size == 1) { "Expected one query parameter 'query'" }
