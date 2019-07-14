@@ -27,3 +27,17 @@ dependencies {
 application {
     mainClassName = "io.vertx.core.Launcher"
 }
+
+val MAIN_VERTICLE_NAME = "com.example.calculator.api.http.CalculusHttpServerVerticle"
+
+tasks {
+    getByName<JavaExec>("run") {
+        args = listOf("run", MAIN_VERTICLE_NAME)
+    }
+
+    withType<ShadowJar> {
+        manifest {
+            attributes["Main-Verticle"] = MAIN_VERTICLE_NAME
+        }
+    }
+}
