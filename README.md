@@ -25,6 +25,10 @@ For running the vertx implementation:
     java -jar vertx-server/build/libs/vertx-server.jar
 
 ## Testing
-The application can be tested by executing:
+The application can be locally tested by executing:
 
-    http GET http://localhost:8080/calculus?query=`echo "1 + 2" | base64`
+    curl http://localhost:8080/calculus?query=`echo "1 + 2" | base64`
+
+Or you can target the production version as follow:
+
+    curl https://calculator-jonalx.herokuapp.com/calculus?query=`echo "1 + 2" | base64`
