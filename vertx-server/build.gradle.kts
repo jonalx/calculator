@@ -14,13 +14,13 @@ dependencies {
     // Use calculator model
     compile(project(":model"))
 
-    // User Vertx core
+    // Use Vertx core
     compile("io.vertx:vertx-core:$VERTX_VERSION")
 
-    // User Vertx core
+    // Use Vertx web
     compile("io.vertx:vertx-web:$VERTX_VERSION")
 
-    // User Kotlin Vertx integration
+    // Use Kotlin Vertx integration
     compile("io.vertx:vertx-lang-kotlin:$VERTX_VERSION")
 }
 
