@@ -11,9 +11,9 @@ import kotlin.test.Test
 data class Scenario(val mathExpression: String, val result: Double? = null, val errorMessage: String? = null)
 
 @RunWith(Parameterized::class)
-class CalculatorTest(scenarioName: String, val scenario: Scenario) {
+class CalculatorImplTest(scenarioName: String, val scenario: Scenario) {
 
-    val calculator = Calculator()
+    val calculator = CalculatorImpl()
 
     companion object {
         @JvmStatic
