@@ -1,23 +1,29 @@
-plugins {
-    // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
-    id("org.jetbrains.kotlin.jvm").version("1.3.41")
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-    // Apply the application plugin to add support for building a CLI application.
+plugins {
+    // Apply the Shadow plugin to add support for fatjar generation.
+    id("com.github.johnrengelman.shadow").version("4.0.3")
+
+    // Apply the application plugin to add support for building a standalone application.
     application
 }
 
+val VERTX_VERSION = "3.7.1"
+
 dependencies {
-    // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    // Use calculator model
+    compile(project(":model"))
 
-    // Use the Kotlin test library.
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    // User Vertx core
+    compile("io.vertx:vertx-core:$VERTX_VERSION")
 
-    // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    // User Vertx core
+    compile("io.vertx:vertx-web:$VERTX_VERSION")
+
+    // User Kotlin Vertx integration
+    compile("io.vertx:vertx-lang-kotlin:$VERTX_VERSION")
 }
 
 application {
-    // Define the main class for the application
-    mainClassName = "com.example.calculator.api.http.AppKt"
+    mainClassName = "io.vertx.core.Launcher"
 }
