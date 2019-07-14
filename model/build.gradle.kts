@@ -3,12 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm").version("1.3.41")
 }
 
-repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
-}
-
 dependencies {
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
