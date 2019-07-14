@@ -20,6 +20,9 @@ dependencies {
     // Use Vertx web
     compile("io.vertx:vertx-web:$VERTX_VERSION")
 
+    // Use Vertx config
+    compile("io.vertx:vertx-config:$VERTX_VERSION")
+
     // Use Kotlin Vertx integration
     compile("io.vertx:vertx-lang-kotlin:$VERTX_VERSION")
 }
