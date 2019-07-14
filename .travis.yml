@@ -2,3 +2,10 @@ language: java
 sudo: false
 jdk:
   - oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: uGPPRLaOSa9+KuFoixk0f7oU/J0n41oufgMV/os/F8NsdlGhu8gS0MuR/hpwaV3X4+5x/t0THFVAqyPQPJZh3nT1JZEa4VMIzayZ+qWV85I7ymcuRJakbCHjbaHSoG1ZKYL6t491U/iP+DXq7M9y++YpTu/8qKwpgJ/UzbmIg+6m4BCJYM2mXYviqHXqXO9f8mBcN81tyVk7qi8t5pINwOQ9Y5WWY5+FAbo8gO3QqJRlzsW7hqf8ao8EAkKE0KFP0luUVAnwlSgV7j4i81XvZNUKAJ+XLYZjN8jZLjBCk3+8bbroN33CWu4SMITNd7kJgBjguC20SbvcX+hMO9RURqPwLbzWAClGJPMHvVdt4XuFpbKamJ5GpMOIks+Xym5lyjd76Ot8JeixirSZdzclMm0AQseXc0A/25iGRHFfm9BTBEqIfughHN1hcBsdnCQL1dRZmV9HVKr5AlMjLCPPte4ciz7yDBCuW/kl+Pgh91Ta/GkN7Vr3MK4SEOp9FvAwUcnuK7Xd9gvqqEwO9FYzwk+sMuU8S+XmLVFXmbj0VziEzIvfqWi3HCjpjhR1OguggsJ8cDxZAoQnf325sU5XPyShwvm5cFoek9JT09Yq2/5sHIKfScl6aEqJ7NN9efdsh4/z7mm/Aqjd5xhB4H9RT6cg8wAhJMsF+N90nkv726s=
+  app: calculator-jonalx
+  on:
+    repo: jonalx/calculator
