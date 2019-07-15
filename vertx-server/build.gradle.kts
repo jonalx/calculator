@@ -25,6 +25,9 @@ dependencies {
 
     // Use Kotlin Vertx integration
     compile("io.vertx:vertx-lang-kotlin:$VERTX_VERSION")
+
+    // Use Vertx unit test
+    testCompile("io.vertx:vertx-unit:$VERTX_VERSION")
 }
 
 application {

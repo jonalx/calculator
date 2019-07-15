@@ -24,9 +24,6 @@ dependencies {
     // Support for Kotlin classes serializacion/deserialization
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    // Kotlin reflection required by spring
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-
     // Use SpringBoot test module
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
