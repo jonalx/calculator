@@ -2,6 +2,8 @@ language: java
 sudo: false
 jdk:
   - oraclejdk8
+addons:
+  artifacts: true
 deploy:
   provider: heroku
   api_key:
@@ -9,5 +11,3 @@ deploy:
   app: calculator-jonalx
   on:
     repo: jonalx/calculator
-addons:
-  artifacts: true
