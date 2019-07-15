@@ -4,8 +4,10 @@ import io.vertx.core.json.JsonObject
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import io.vertx.kotlin.core.deploymentOptionsOf
 import org.junit.Rule
 import org.junit.runner.RunWith
+import java.net.ServerSocket
 import java.util.*
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -18,9 +20,18 @@ class CalculusHttpServerVerticleTest {
     @JvmField
     val rule = RunTestOnContext()
 
+    var serverPort: Int = 0
+
     @BeforeTest
     fun setup(context: TestContext) {
-        rule.vertx().deployVerticle(CalculusHttpServerVerticle::class.qualifiedName, context.asyncAssertSuccess())
+        val serverSocket = ServerSocket(serverPort)
+        serverPort = serverSocket.localPort
+        serverSocket.close()
+
+        rule.vertx().deployVerticle(
+                CalculusHttpServerVerticle::class.qualifiedName,
+                deploymentOptionsOf(config = JsonObject().put("server.port", serverPort)),
+                context.asyncAssertSuccess())
     }
 
     @AfterTest
@@ -38,7 +49,7 @@ class CalculusHttpServerVerticleTest {
 
         // when
         val async = context.async()
-        rule.vertx().createHttpClient().get(8080, "localhost", "/calculus?query=$encodedMathExpression") { response ->
+        rule.vertx().createHttpClient().get(serverPort, "localhost", "/calculus?query=$encodedMathExpression") { response ->
             // then
             context.assertEquals(400, response.statusCode())
             context.assertEquals(expectedCalculusResponse.message, response.statusMessage())
@@ -60,7 +71,7 @@ class CalculusHttpServerVerticleTest {
 
         // when
         val async = context.async()
-        rule.vertx().createHttpClient().get(8080, "localhost", "/calculus?query=$encodedMathExpression") { response ->
+        rule.vertx().createHttpClient().get(serverPort, "localhost", "/calculus?query=$encodedMathExpression") { response ->
             // then
             context.assertEquals(200, response.statusCode())
             context.assertEquals("OK", response.statusMessage())
@@ -78,7 +89,7 @@ class CalculusHttpServerVerticleTest {
 
         // when
         val async = context.async()
-        rule.vertx().createHttpClient().get(8080, "localhost", "/calculus") { response ->
+        rule.vertx().createHttpClient().get(serverPort, "localhost", "/calculus") { response ->
             // then
             context.assertEquals(400, response.statusCode())
             context.assertEquals(expectedCalculusResponse.message, response.statusMessage())
@@ -103,7 +114,7 @@ class CalculusHttpServerVerticleTest {
 
         // when
         val async = context.async()
-        rule.vertx().createHttpClient().get(8080, "localhost", "/calculus?query=$encodedMathExpression") { response ->
+        rule.vertx().createHttpClient().get(serverPort, "localhost", "/calculus?query=$encodedMathExpression") { response ->
             // then
             context.assertEquals(400, response.statusCode())
             context.assertEquals(expectedCalculusResponse.message, response.statusMessage())
