@@ -57,7 +57,7 @@ class CalculusHttpServerVerticleTest {
                 context.assertEquals(JsonObject.mapFrom(expectedCalculusResponse), body.toJsonObject())
                 async.complete()
             }
-        }.end()
+        }.exceptionHandler { context.fail(it) }.end()
     }
 
     @Test
@@ -79,7 +79,7 @@ class CalculusHttpServerVerticleTest {
                 context.assertEquals(JsonObject.mapFrom(expectedCalculusResponse), body.toJsonObject())
                 async.complete()
             }
-        }.end()
+        }.exceptionHandler { context.fail(it) }.end()
     }
 
     @Test
@@ -97,7 +97,7 @@ class CalculusHttpServerVerticleTest {
                 context.assertEquals(JsonObject.mapFrom(expectedCalculusResponse), body.toJsonObject())
                 async.complete()
             }
-        }.end()
+        }.exceptionHandler { context.fail(it) }.end()
     }
 
     @Test
@@ -122,6 +122,6 @@ class CalculusHttpServerVerticleTest {
                 context.assertEquals(JsonObject.mapFrom(expectedCalculusResponse), body.toJsonObject())
                 async.complete()
             }
-        }.end()
+        }.exceptionHandler { context.fail(it) }.end()
     }
 }

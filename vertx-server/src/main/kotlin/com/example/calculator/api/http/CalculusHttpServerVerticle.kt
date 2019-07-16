@@ -5,6 +5,7 @@ import com.example.calculator.model.CalculatorImpl
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.vertx.config.ConfigRetriever
 import io.vertx.core.AbstractVerticle
+import io.vertx.core.Future
 import io.vertx.core.json.Json
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
@@ -17,7 +18,7 @@ class CalculusHttpServerVerticle : AbstractVerticle() {
 
     val calculator: Calculator = CalculatorImpl()
 
-    override fun start() {
+    override fun start(startFuture: Future<Void>?) {
         val router = Router.router(vertx)
         router.get("/calculus").handler(this::calculus)
 
@@ -28,8 +29,10 @@ class CalculusHttpServerVerticle : AbstractVerticle() {
             vertx.createHttpServer().requestHandler(router).listen(serverPort) { result ->
                 if (result.succeeded()) {
                     println("HTTP server started on port: $serverPort")
+                    startFuture?.complete()
                 } else {
                     println("HTTP server failed to bind port: $serverPort")
+                    startFuture?.fail(result.cause())
                 }
             }
         }
