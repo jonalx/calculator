@@ -29,6 +29,6 @@ The application can be locally tested by executing:
 
     curl http://localhost:8080/calculus?query=`echo "1 + 2" | base64`
 
-Or you can target the production version as follow:
+Or you can target the live version as follow:
 
     curl https://calculator-jonalx.herokuapp.com/calculus?query=`echo "1 + 2" | base64`
